@@ -13,7 +13,8 @@ RUN yum -y install make gcc curl zlib-devel openssl-devel file \
 
 
 FROM centos:latest
-RUN yum -y install iproute https://s3-us-west-2.amazonaws.com/percona-tmp/pmm-client-1.14.0-1.el7.x86_64.rpm \
+RUN yum -y install http://www.percona.com/downloads/percona-release/redhat/0.1-6/percona-release-0.1-6.noarch.rpm \
+    && yum -y --enablerepo=percona-testing-x86_64 install iproute pmm-client \
     && chown -R nobody:nobody /usr/local/percona \
     && rm -rf /var/cache/yum
 
